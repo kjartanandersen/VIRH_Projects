@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: PassiveMEscapeRoot
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"dynamic":true,"_position":{"x":336.4468,"y":306.0461},"$type":"NodeCanvas.BehaviourTrees.Selector","$id":"0"},{"dynamic":true,"_position":{"x":-232.1979,"y":593.0486},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"1"},{"_condition":{"method":{"_baseInfo":"PerceptionManager|HasSocialTarget|System.Boolean","_paramsInfo":""},"parameters":[],"checkValue":{"_type":"System.Boolean","_value":{"$content":true,"$type":"System.Boolean"}},"$type":"NodeCanvas.Tasks.Conditions.CheckFunction_Multiplatform"},"_position":{"x":-534.4446,"y":705.0548},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"2"},{"_action":{"method":{"_baseInfo":"UnityEngine.AI.NavMeshAgent|ResetPath|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-249.5559,"y":705.9728},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"filterMode":0,"maxCount":{"_value":1},"coolDownTime":{"_value":5.0},"_position":{"x":-59.79056,"y":703.716},"$type":"NodeCanvas.BehaviourTrees.Filter","$id":"4"},{"_nestedDialogueTree":{"_value":1},"_position":{"x":-75.53136,"y":800.7512},"$type":"NodeCanvas.BehaviourTrees.NestedDT","$id":"5"},{"_position":{"x":354.4886,"y":578.8683},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"6"},{"_condition":{"valueA":{"_name":"CarryingOrb","_targetVariableID":"d20b5cf9-4da2-4051-b69e-7d42f5789c76"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":201.5647,"y":690.8568},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"7"},{"_subTree":{"_value":2},"_position":{"x":500.2045,"y":689.0587},"$type":"NodeCanvas.BehaviourTrees.SubTree","$id":"8"},{"_position":{"x":937.1433,"y":586.5027},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"9"},{"_condition":{"valueA":{"_name":"CarryingOrb","_targetVariableID":"d20b5cf9-4da2-4051-b69e-7d42f5789c76"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":789.6041,"y":718.5118},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"10"},{"_action":{"target":{"_name":"Global/Gate","_targetVariableID":"fdc0c784-e79f-4991-bb0b-72a88ebb3e0d"},"speed":{"_value":4.0},"keepDistance":{"_value":0.1},"$type":"NodeCanvas.Tasks.Actions.MoveToGameObject"},"_position":{"x":1098.603,"y":678.7258},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"11"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[{"name":"Negotiation","rect":{"xMin":-670.468,"yMin":536.905,"xMax":107.4708,"yMax":895.9537}},{"name":"Escape","rect":{"xMin":741.5471,"yMin":536.2565,"xMax":1341.481,"yMax":827.5002}},{"name":"Fetch","rect":{"xMin":126.6975,"yMin":536.7475,"xMax":725.0946,"yMax":822.6214}}],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 05f4e20cb3b3d4f419a8c460256dd464, type: 2}
+  - {fileID: 11400000, guid: fc3653decbcb1ad43b6dbaa41c5caab8, type: 2}
+  _graphSource:
+    _version: 3.3
+    _category: 
+    _comments: 
+    _translation: {x: 155, y: -122}
+    _zoomFactor: 0.75009495
+  _haltSerialization: 0
+  _externalSerializationFile: {fileID: 0}

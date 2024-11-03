@@ -1,0 +1,9 @@
+Interviewee enters and sits down with the interviewer
+Interviewer asks questions that are generated with an LLM
+User responds, and the response is evaluated on its grammar, fluency and tone
+Certain named entities from the user's response is saved for the virtual agent to ask about
+
+Assets Used:
+
+"Interior House Assets | URP" by Unity Technologies
+"POLYGON office building" by 255 pixel studios

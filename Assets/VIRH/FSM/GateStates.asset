@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
+  m_Name: GateStates
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Closed","_position":{"x":395.4924,"y":270.4105},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.MeshRenderer|set_material|System.Void","_paramsInfo":"UnityEngine.Material"},"parameter":{"_type":"UnityEngine.Material","_value":{"$content":1,"$type":"UnityEngine.Material"}},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_position":{"x":666.9391,"y":344.4752},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"}],"connections":[{"_condition":{"checkTarget":{"_name":"Global/Orb","_targetVariableID":"e4518664-18a7-4b85-b0e2-aa890ef10778"},"distance":{"_value":1.3},"$type":"NodeCanvas.Tasks.Conditions.CheckDistanceToGameObject"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 2100000, guid: 308e0e6cd4e7f7848b9f5103191c4eff, type: 2}
+  _graphSource:
+    _version: 3.3
+    _category: 
+    _comments: 
+    _translation: {x: -64, y: 117}
+    _zoomFactor: 0.9086277
+  _haltSerialization: 0
+  _externalSerializationFile: {fileID: 0}

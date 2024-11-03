@@ -4,41 +4,34 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    public enum SensorType { NearProximity, FarProximity };
-    public PerceptionManager m_ActionManager;
+    public enum SensorType
+    {    // Our possible sensors types (you can add as many as you want)
+        NearProximity,
+        FarProximity,
+        SocialZone
+    };
 
-    public SensorType m_MySensorType;
+    public PerceptionManager m_PerceptionManager;   // This sensor will report to this Perception Manager
+
+    public SensorType m_MySensorType;               // Identifies this sensor
+
     // Start is called before the first frame update
     void Start() { }
 
     // Update is called once per frame
     void Update() { }
 
+    // Overrides this event callback
     public void OnTriggerEnter(Collider other)
     {
-        GameObject subject;
-        if (other.tag == "Player")
-        {
-            subject = other.gameObject.transform.GetChild(0).gameObject;
-        }
-        else
-        {
-            subject = other.gameObject;
-        }
-        m_ActionManager.SensorInput(m_MySensorType, subject, true);
+        Debug.Log("Sensor Enter Triggered!");
+        m_PerceptionManager.SensorInput(m_MySensorType, other.gameObject, true);
     }
 
+    // Overrides this event callback
     public void OnTriggerExit(Collider other)
     {
-        GameObject subject;
-        if (other.tag == "Player")
-        {
-            subject = other.gameObject.transform.GetChild(0).gameObject;
-        }
-        else
-        {
-            subject = other.gameObject;
-        }
-        m_ActionManager.SensorInput(m_MySensorType, subject, false);
+        Debug.Log("Sensor Exit Triggered!");
+        m_PerceptionManager.SensorInput(m_MySensorType, other.gameObject, false);
     }
 }

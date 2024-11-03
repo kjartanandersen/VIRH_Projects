@@ -14,6 +14,7 @@
     "com.unity.render-pipelines.core": "14.0.9",
     "com.unity.render-pipelines.universal": "14.0.9",
     "com.unity.searcher": "4.9.2",
+    "com.unity.sentis": "2.1.0",
     "com.unity.shadergraph": "14.0.9",
     "com.unity.terrain-tools": "5.0.5",
     "com.unity.test-framework": "1.1.33",

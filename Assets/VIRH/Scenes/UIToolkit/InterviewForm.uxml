@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/VIRH/Scenes/UIToolkit/InterviewForm.uss?fileID=7433441132597879392&amp;guid=e7453b038af918444afd3727cd13918a&amp;type=3#InterviewForm" />
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Interview Form" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Header2" class="header" />
+        <ui:VisualElement style="flex-grow: 1; padding-top: 0; padding-right: 300px; padding-bottom: 0; padding-left: 300px;">
+            <ui:GroupBox style="height: 246px; width: 670px;">
+                <ui:Label tabindex="-1" text="Education" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 28px;" />
+                <ui:RadioButton label="High School" name="HSBtn" />
+                <ui:RadioButton label="BSc" name="BSButton" />
+                <ui:RadioButton label="MSc" name="MSButton" />
+            </ui:GroupBox>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

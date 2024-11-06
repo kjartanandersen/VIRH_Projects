@@ -1,16 +1,10 @@
-from flask import Flask, request
-from openai import OpenAI
+
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, pipeline
 import torch
 
-app = Flask(__name__)
+# Sentiment analysis 
 
-
-client = OpenAI(
-  organization='org-bkTtf8lP8uYZyMdx6PZEvGIK',
-  project="proj_y93Oq35l2UyIsxnQerJeH3ee"
-)
-
+sentence = """yeah you know yeah haha."""  # Example sentence
 sentiment_pipeline = pipeline("sentiment-analysis", device=0)  # Load sentiment analysis pipeline on GPU
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -31,6 +25,7 @@ def sentiment_score(sentence):
     
     return score / 2
 
+print(sentiment_score(sentence))  # Output includes label (positive/negative) and confidence score
 
 def calculate_perplexity(sentence):
     inputs = tokenizer(sentence, return_tensors="pt")
@@ -52,33 +47,6 @@ def fluency_score(sentence):
         # Apply min-max normalization formula
         return 1 - (perplexity - MIN_PERPLEXITY) / (MAX_PERPLEXITY - MIN_PERPLEXITY)
 
-@app.route("/send_interviewer_text", methods=["GET", "POST"])
-def hello_world():
-    """
-    This function receives the user's text input and sends it to the OpenAI API to generate a response. 
-    """
+score = fluency_score(sentence)
 
-    content = request.get_data(as_text=True)
-    print(content)
-    completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are an HR expert specializing in conducting professional job interviews."},
-        {"role": "user", "content": content},
-    ]
-    )
-
-    return completion.choices[0].message.content
-
-@app.route("/fluency_sentiment_score", methods=["GET", "POST"])
-def fluency_sentiment_score():
-    """
-    This function receives the user's text input and calculates both the fluency and sentiment scores.
-    """
-
-    content = request.get_data(as_text=True)
-    print(content)
-    fluency = fluency_score(content)
-    sentiment = sentiment_score(content)
-
-    return str(fluency) + "," + str(sentiment)
+print(score)  # Output fluency score between 0 and 1

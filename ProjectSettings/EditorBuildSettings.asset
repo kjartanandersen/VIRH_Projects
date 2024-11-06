@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/VIRH/Scenes/Project2/Project2.unity
     guid: 7fbb38dc078069e4295d2b8cf284cf74
+  - enabled: 1
+    path: Assets/VIRH/Scenes/Lab8/Lab8.unity
+    guid: 2d2a88ccd34d0ca4f80e6bfc25f742e5
+  - enabled: 0
+    path: Assets/Crazy Minnow Studio/Examples/Scenes/SalsaRtVoice.unity
+    guid: c0019be18f803a940b8c0238702bd25e
   m_configObjects: {}

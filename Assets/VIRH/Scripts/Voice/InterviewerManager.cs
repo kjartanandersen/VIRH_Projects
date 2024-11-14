@@ -37,14 +37,13 @@ public class IntervieweeManager : MonoBehaviour
     
     private float fluency_score;
     private float sentiment_score;
+    private float relevancy_score;
     private float intervieweeScore = 0.5f;
 
     private List<string> alreadyAskedQuestions = new List<string>();
 
-    private bool isTalking;
-    private bool hasFinishedTalking;
+    
     private bool startedInterview;
-    private bool hasSpokenStartInterview;
 
     private string fetchedString;
     private bool hasFetchedData;
@@ -86,10 +85,7 @@ public class IntervieweeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isTalking = true;
-        hasFinishedTalking = false;
         startedInterview = false;
-        hasSpokenStartInterview = false;
         emoter = GetComponent<Emoter>();
         animator = GetComponent<Animator>();
         
@@ -100,19 +96,20 @@ public class IntervieweeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (questionCount >= maxQuestions)
+        if (questionCount > maxQuestions)
         {
             UIManager.EndInterview();
+            Speaker.Instance.OnSpeakComplete -= OnQuestionEnd;
+            Speaker.Instance.Silence();
             hasFetchedData = false;
         }
         if (startedInterview)
         {
             
-            Say("Thank you for joining us today.");
+            Say("Thank you for joining us today. We’re excited to learn more about your background and experiences. This interview is an opportunity for us to better understand your technical expertise, problem-solving approach, and how you handle challenges in a collaborative environment. Let’s dive into some questions to help us get to know you better");
             // Thank you for joining us today. We’re excited to learn more about your background and experiences. This interview is an opportunity for us to better understand your technical expertise, problem-solving approach, and how you handle challenges in a collaborative environment. Let’s dive into some questions to help us get to know you better
             startedInterview = false;
             Speaker.Instance.OnSpeakComplete += AskFirstQuestion;
-            hasSpokenStartInterview = true;
         }
 
         if (hasFetchedData)
@@ -168,7 +165,7 @@ public class IntervieweeManager : MonoBehaviour
 
     public void GetScore()
     {
-        if (questionCount >= maxQuestions)
+        if (questionCount > maxQuestions)
         {
             return;
         }
@@ -224,7 +221,7 @@ public class IntervieweeManager : MonoBehaviour
         else
         {
             isFetchingData = true;
-            using (UnityWebRequest request = UnityWebRequest.PostWwwForm("http://localhost:5000/send_interviewer_text", CreateSendString()))
+            using (UnityWebRequest request = UnityWebRequest.Post("http://localhost:5000/send_interviewer_text", CreateSendString(), contentType: "application/raw"))
             {
                 yield return request.SendWebRequest();
 
@@ -257,7 +254,9 @@ public class IntervieweeManager : MonoBehaviour
         }
         else
         {
-            using (UnityWebRequest request = UnityWebRequest.PostWwwForm("http://localhost:5000/fluency_sentiment_score", UIManager.GetIntervieweeAnswer()))
+            Debug.Log("Interviewee data" + UIManager.GetIntervieweeAnswer());
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(UIManager.GetIntervieweeAnswer());
+            using (UnityWebRequest request = UnityWebRequest.Post("http://localhost:5000/fluency_sentiment_score", UIManager.GetIntervieweeAnswer(), contentType: "application/raw"))
             {
                 yield return request.SendWebRequest();
 
@@ -279,7 +278,9 @@ public class IntervieweeManager : MonoBehaviour
                     Debug.Log("Fluency Score: " + fluency_score);
                     sentiment_score = float.Parse(scores[1], CultureInfo.InvariantCulture);
                     Debug.Log("Sentiment Score: " + sentiment_score);
-                    intervieweeScore = (fluency_score * 0.7f) + sentiment_score * 0.3f;
+                    relevancy_score = float.Parse(scores[2], CultureInfo.InvariantCulture);
+                    Debug.Log("Relevancy Score: " + relevancy_score);
+                    intervieweeScore = (fluency_score * 0.2f) + sentiment_score * 0.3f + relevancy_score * 0.5f;
                     Debug.Log("Interview Score: " + intervieweeScore);
                     GetQuestion();
 
@@ -295,8 +296,6 @@ public class IntervieweeManager : MonoBehaviour
 
     private void SpeakComplete(Wrapper wrapper)
     {
-        isTalking = false;
-        hasFinishedTalking = true;
         Speaker.Instance.Silence();
         audioSource.Stop();
         Debug.Log("Finished speaking");
@@ -342,7 +341,6 @@ public class IntervieweeManager : MonoBehaviour
 
     public void AskFirstQuestion(Wrapper wrapper)
     {
-        hasSpokenStartInterview = false;
         isFetchingData = false;
         GetQuestion();
         Speaker.Instance.OnSpeakComplete += OnQuestionEnd;
@@ -354,7 +352,6 @@ public class IntervieweeManager : MonoBehaviour
         Debug.Log("Question ended");
         Debug.Log(animator.GetBool("isTalking"));
         animator.SetBool("isTalking", false);
-        animator.SetBool("isTalking", true);
         animator.SetBool("isIdle", true);
     }
 }
